@@ -1,0 +1,133 @@
+/* 1. IMPORT TECH FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* 2. CYBER PALETTE DEFINITIONS */
+:root {
+    /* DEFAULT (BRIGHT / CORP MODE) */
+    --bg-color: #f0f0f0;
+    --panel-bg: #ffffff;
+    --text-main: #0a0a0a;
+    --text-muted: #444444;
+    --accent-red: #d00000; /* Deep Red */
+    --accent-glow: rgba(208, 0, 0, 0.2);
+    --border-color: #000000;
+    --grid-line: rgba(0, 0, 0, 0.05);
+    
+    --font-head: 'Rajdhani', sans-serif;
+    --font-code: 'JetBrains Mono', monospace;
+}
+
+body.theme-dark {
+    /* DARK (HACKER MODE) */
+    --bg-color: #050505;
+    --panel-bg: #111111;
+    --text-main: #eeeeee;
+    --text-muted: #888888;
+    --accent-red: #ff2a2a; /* Neon Red */
+    --accent-glow: rgba(255, 42, 42, 0.3);
+    --border-color: #333333;
+    --grid-line: rgba(255, 255, 255, 0.03);
+}
+
+/* 3. GLOBAL RESET & BASE */
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: var(--font-head);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Subtle Grid Background */
+    background-image: 
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; transition: 0.3s; }
+ul { list-style: none; padding: 0; margin: 0; }
+
+/* 4. CYBER HEADER */
+.site-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--bg-color);
+    border-bottom: 2px solid var(--accent-red);
+    box-shadow: 0 5px 20px var(--accent-glow);
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* LOGO - Glitchy Text Style */
+.site-logo a {
+    font-family: var(--font-code);
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    border: 1px solid var(--accent-red);
+    padding: 5px 15px;
+    background: var(--panel-bg);
+}
+
+.site-logo a:hover {
+    background: var(--accent-red);
+    color: #fff;
+    box-shadow: 4px 4px 0 var(--text-main);
+}
+
+/* NAVIGATION */
+.main-nav ul { display: flex; gap: 5px; }
+
+.main-nav a {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-main);
+    padding: 8px 16px;
+    position: relative;
+    font-size: 1.1rem;
+}
+
+/* Hover Effect: Red bracket */
+.main-nav a::before, .main-nav a::after {
+    content: ''; position: absolute; width: 8px; height: 8px;
+    border: 2px solid transparent; transition: 0.3s;
+}
+.main-nav a::before { top: 0; left: 0; border-top-color: transparent; border-left-color: transparent; }
+.main-nav a::after { bottom: 0; right: 0; border-bottom-color: transparent; border-right-color: transparent; }
+
+.main-nav a:hover { color: var(--accent-red); background: rgba(255,0,0,0.05); }
+.main-nav a:hover::before { border-top-color: var(--accent-red); border-left-color: var(--accent-red); }
+.main-nav a:hover::after { border-bottom-color: var(--accent-red); border-right-color: var(--accent-red); }
+
+/* CONTROLS */
+.header-right-controls { display: flex; align-items: center; gap: 20px; }
+
+.theme-toggle-button {
+    background: var(--panel-bg);
+    border: 1px solid var(--text-main);
+    width: 40px; height: 40px;
+    cursor: pointer;
+    color: var(--accent-red);
+    display: flex; justify-content: center; align-items: center;
+    font-family: var(--font-code);
+    font-weight: bold;
+}
+.theme-toggle-button:hover { background: var(--accent-red); color: #fff; }
+
+/* HAMBURGER */
+.hamburger-menu { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.bar { width: 30px; height: 3px; background-color: var(--accent-red); transition: 0.3s; }
